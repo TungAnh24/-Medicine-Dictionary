@@ -1,0 +1,284 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 01, 2022 at 02:52 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `meddict`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eng`
+--
+
+CREATE TABLE `eng` (
+  `id` int(11) NOT NULL,
+  `wordEng` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
+  `idtype` int(11) NOT NULL,
+  `desEng` text COLLATE utf8_vietnamese_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `eng`
+--
+
+INSERT INTO `eng` (`id`, `wordEng`, `idtype`, `desEng`) VALUES
+(1, 'Choice', 1, ''),
+(2, 'Combination', 1, ''),
+(3, 'Confusing', 1, ''),
+(4, 'Consider', 2, ''),
+(5, 'Condition', 1, ''),
+(6, 'cure', 2, ''),
+(7, 'Depend', 2, ''),
+(8, 'Especially', 2, ''),
+(9, 'Except', 3, ''),
+(10, 'Extremely', 3, ''),
+(11, 'Fight', 2, ''),
+(12, 'Follow', 2, ''),
+(13, 'Generic name', 1, ''),
+(14, 'Infection', 1, ''),
+(15, 'Improvement', 1, ''),
+(16, 'Instruction', 1, ''),
+(17, 'Major', 5, ''),
+(18, 'Narrow-spectrum antibiotic', 1, ''),
+(19, 'Occur', 2, ''),
+(20, 'Precaution', 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trans`
+--
+
+CREATE TABLE `trans` (
+  `idVIe` int(11) NOT NULL,
+  `idEng` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `trans`
+--
+
+INSERT INTO `trans` (`idVIe`, `idEng`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 15),
+(16, 16),
+(17, 17),
+(18, 18),
+(19, 19),
+(20, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `userName` varchar(20) COLLATE utf8_vietnamese_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8_vietnamese_ci NOT NULL,
+  `authority` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `userName`, `password`, `phone`, `authority`, `status`) VALUES
+(1, 'admin', 'a719ed0956c6496947b04bf898044cc0', '0387582508', 1, 1),
+(2, 'admin2', '83e1c446d61cc8f78c21a3ba948886db', '012345678', 0, 1),
+(4, 'khachang1', '964e540d0793ac516b62672cf1485962', '034952445', 2, 1),
+(5, 'admin3', 'd357dea39f875a12827f11503cd623fe', '02584826', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vie`
+--
+
+CREATE TABLE `vie` (
+  `id` int(11) NOT NULL,
+  `wordVie` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
+  `idtype` int(100) NOT NULL,
+  `desVie` text COLLATE utf8_vietnamese_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `vie`
+--
+
+INSERT INTO `vie` (`id`, `wordVie`, `idtype`, `desVie`) VALUES
+(1, 'Sự lựa chọn', 1, ''),
+(2, 'Sự kết hợp', 1, ''),
+(3, 'Khó hiểu, dễ gây nhầm lẫn', 1, ''),
+(4, 'Coi là', 2, ''),
+(5, 'Điều kiện', 1, ''),
+(6, 'Chữa khỏi', 2, ''),
+(7, 'Phụ thuộc', 2, ''),
+(8, 'Đặc biệt là', 2, ''),
+(9, 'Loại từ, ngoại trừ', 3, ''),
+(10, 'Cực kì', 3, ''),
+(11, 'Chống lại', 2, ''),
+(12, 'Theo sau, theo dõi, làm theo', 2, ''),
+(13, 'Tên khoa học', 1, ''),
+(14, 'Nhiễm trùng', 1, ''),
+(15, 'Cải tiến, sự hồi phục', 1, ''),
+(16, 'Sự chỉ đẫn', 1, ''),
+(17, 'lớn, quan trọng', 5, ''),
+(18, 'Kháng sinh phổ hẹp', 1, ''),
+(19, 'Xẩy ra', 2, ''),
+(20, 'Thận trọng', 1, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wordtype`
+--
+
+CREATE TABLE `wordtype` (
+  `id` int(11) NOT NULL,
+  `typenameVie` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
+  `typenameEng` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Dumping data for table `wordtype`
+--
+
+INSERT INTO `wordtype` (`id`, `typenameVie`, `typenameEng`) VALUES
+(1, 'Danh từ', 'Noun'),
+(2, 'Động từ', 'Verd'),
+(3, 'Tính từ', 'Adjactive'),
+(4, 'Từ hạn định', 'Determiner'),
+(5, 'Trạng từ', 'Adverb'),
+(6, 'Đại từ', 'Pronoun'),
+(7, 'Giới từ', 'Preposition'),
+(8, 'Liên từ', 'Conjunction'),
+(9, 'Thán từ', 'Interjection');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `eng`
+--
+ALTER TABLE `eng`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `eng_fk0` (`idtype`);
+
+--
+-- Indexes for table `trans`
+--
+ALTER TABLE `trans`
+  ADD PRIMARY KEY (`idVIe`),
+  ADD KEY `trans_fk1` (`idEng`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `userName` (`userName`),
+  ADD UNIQUE KEY `phone` (`phone`);
+
+--
+-- Indexes for table `vie`
+--
+ALTER TABLE `vie`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vie_fk0` (`idtype`);
+
+--
+-- Indexes for table `wordtype`
+--
+ALTER TABLE `wordtype`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `eng`
+--
+ALTER TABLE `eng`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `vie`
+--
+ALTER TABLE `vie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `wordtype`
+--
+ALTER TABLE `wordtype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `eng`
+--
+ALTER TABLE `eng`
+  ADD CONSTRAINT `eng_fk0` FOREIGN KEY (`idtype`) REFERENCES `wordtype` (`id`);
+
+--
+-- Constraints for table `trans`
+--
+ALTER TABLE `trans`
+  ADD CONSTRAINT `trans_fk0` FOREIGN KEY (`idVIe`) REFERENCES `vie` (`id`),
+  ADD CONSTRAINT `trans_fk1` FOREIGN KEY (`idEng`) REFERENCES `eng` (`id`);
+
+--
+-- Constraints for table `vie`
+--
+ALTER TABLE `vie`
+  ADD CONSTRAINT `vie_fk0` FOREIGN KEY (`idtype`) REFERENCES `wordtype` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
